@@ -199,15 +199,19 @@ const UserList = () => {
   const debounceSearch = useDebounce(state.search, 1000);
 
   useEffect(() => {
-    filterByEmail();
+    filterBySearch();
   }, [debounceSearch]);
 
-  const filterByEmail = () => {
+  const filterBySearch = () => {
     if (state.search) {
-      const filtered = state.userList.filter((user: any) =>
-        user.email.toLowerCase().includes(state.search.toLowerCase())
+      const searchLower = state.search.toLowerCase();
+  
+      const filtered = state.originalUserList.filter((user: any) =>
+        user.first_name?.toLowerCase().includes(searchLower) ||
+        user.last_name?.toLowerCase().includes(searchLower) ||
+        user.email?.toLowerCase().includes(searchLower)
       );
-
+  
       setState({
         userList: filtered,
         total_pages: filtered?.length,
@@ -216,11 +220,12 @@ const UserList = () => {
     } else {
       setState({
         userList: state.originalUserList,
-        total_pages: state.total_pages,
+        total_pages: state.originalUserList?.length || 0,
         loading: false,
       });
     }
   };
+  
 
   const userList = async (page: number) => {
     try {
