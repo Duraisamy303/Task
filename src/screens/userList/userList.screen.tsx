@@ -320,7 +320,7 @@ const UserList = () => {
         </div>
 
         <Modal
-          title={state.userId ? "Update user" : "Create New User"}
+          title={state.userId ? "Edit User" : "Create New User"}
           open={state.isModalOpen}
           onCancel={handleCancel}
           footer={null}
