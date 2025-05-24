@@ -4,7 +4,6 @@ import {
  
 } from './types.utils';
 
-// --------------------    Auth   --------------------
 
 export const user_detail = (payload: object) =>
   store.dispatch({

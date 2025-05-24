@@ -4,11 +4,10 @@ import {
   compose,
 } from 'redux';
 import rootReducer from './reducers/root.reducer';
-import { thunk } from 'redux-thunk'; // ✅ Named import
+import { thunk } from 'redux-thunk'; 
 
 const middleware: any[] = [thunk];
 
-// Enable Redux DevTools if available
 const composeEnhancers =
   (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 

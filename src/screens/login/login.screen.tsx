@@ -19,12 +19,6 @@ const Login = () => {
   const onFinish = async (values: any) => {
     try {
       setState({ loading: true });
-
-      //   const body = {
-      //     email: "eve.holt@reqres.in",
-      //     password: "cityslicka",
-      //   };
-
       const body = {
         email: values.email,
         password: values.password,
@@ -32,9 +26,7 @@ const Login = () => {
 
       const res: any = await Models.auth.login(body);
       setState({ loading: false });
-
       localStorage.setItem("token", res?.token);
-     
       navigate("/user_list");
       messageApi.open({
         type: "success",
