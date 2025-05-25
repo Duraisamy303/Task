@@ -205,13 +205,14 @@ const UserList = () => {
   const filterBySearch = () => {
     if (state.search) {
       const searchLower = state.search.toLowerCase();
-  
-      const filtered = state.originalUserList.filter((user: any) =>
-        user.first_name?.toLowerCase().includes(searchLower) ||
-        user.last_name?.toLowerCase().includes(searchLower) ||
-        user.email?.toLowerCase().includes(searchLower)
+
+      const filtered = state.originalUserList.filter(
+        (user: any) =>
+          user.first_name?.toLowerCase().includes(searchLower) ||
+          user.last_name?.toLowerCase().includes(searchLower) ||
+          user.email?.toLowerCase().includes(searchLower)
       );
-  
+
       setState({
         userList: filtered,
         total_pages: filtered?.length,
@@ -225,7 +226,6 @@ const UserList = () => {
       });
     }
   };
-  
 
   const userList = async (page: number) => {
     try {
@@ -256,7 +256,7 @@ const UserList = () => {
               <div className="pt-3">
                 <Radio.Group
                   value={view}
-                  onChange={(e) => setState({ view: e.target.value })}
+                  onChange={(e) => setView(e.target.value)}
                 >
                   <Radio.Button value="table">
                     <TableOutlined style={{ marginRight: 6 }} />
@@ -288,7 +288,7 @@ const UserList = () => {
           <div className="flex items-center justify-center h-screen">
             <Spin size="large" tip="Loading..." />
           </div>
-        ) : state.view === "table" ? (
+        ) :view === "table" ? (
           <Table
             dataSource={state.userList}
             columns={columns}
